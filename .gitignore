@@ -1,0 +1,29 @@
+# OS 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 에디터 설정
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 로그 파일
+*.log
+
+# 임시 파일
+*.tmp
+*.temp
+
+# 백업 파일
+*.bak
+*.backup
+
+# Node modules (필요시)
+node_modules/
+
+# 환경 변수 (필요시)
+.env
+.env.local

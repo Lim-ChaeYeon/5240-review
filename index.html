@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 팀 2025년 결산</title>
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 진행률 표시 -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <!-- 인트로 화면 -->
+    <div class="intro-screen" id="introScreen">
+        <!-- 마우스 반응 이미지 컨테이너 -->
+        <div class="intro-floating-images" id="introFloatingImages"></div>
+        
+        <div class="intro-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="intro-title">우리 팀</h1>
+            <h2 class="intro-subtitle">2025년 결산</h2>
+            <p class="intro-description">함께 만들어낸 한 해의 성과를 돌아봅니다</p>
+            <button class="start-button" onclick="startReview()">
+                시작하기
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="500">
+            <span>스크롤하거나 클릭하여 진행</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </div>
+
+    <!-- 메인 슬라이드 컨테이너 -->
+    <div class="swiper-container" id="mainSwiper" style="display: none;">
+        <!-- 떠다니는 아이콘 컨테이너 -->
+        <div class="floating-icons-container" id="floatingContainer"></div>
+        
+        <div class="swiper-wrapper" id="slidesContainer">
+            <!-- 슬라이드는 JavaScript에서 동적으로 생성됩니다 -->
+        </div>
+
+        <!-- 네비게이션 버튼 -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+        <!-- 페이지네이션 -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- 엔딩 화면 -->
+    <div class="ending-screen" id="endingScreen" style="display: none;">
+        <div class="ending-content" data-aos="fade-up">
+            <h2 class="ending-title">2025년, 함께여서 특별했습니다</h2>
+            <p class="ending-description">2026년에도 계속해서 성장하며 나아가겠습니다</p>
+            <div class="ending-actions">
+                <button class="action-button primary" onclick="restartReview()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M21 3v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M21 12a9 9 0 01-9 9 9.75 9.75 0 01-6.74-2.74L3 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    다시 보기
+                </button>
+                <button class="action-button secondary" onclick="shareReview()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 8a3 3 0 100-6 3 3 0 000 6zM6 15a3 3 0 100-6 3 3 0 000 6zM18 22a3 3 0 100-6 3 3 0 000 6zM8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    공유하기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 슬라이드 카운터 -->
+    <div class="slide-counter" id="slideCounter" style="display: none;">
+        <span id="currentSlide">1</span> / <span id="totalSlides">12</span>
+    </div>
+
+    <!-- 마지막 슬라이드 완료 힌트 -->
+    <div class="finish-hint" id="finishHint">
+        <div class="finish-hint-content">
+            <span class="finish-hint-icon">🎉</span>
+            <span class="finish-hint-text">클릭하여 결산 완료</span>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- CountUp.js (숫자 카운트 애니메이션) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.min.js"></script>
+    
+    <!-- 데이터 파일 -->
+    <script src="data.js"></script>
+    
+    <!-- 메인 앱 스크립트 -->
+    <script src="app.js"></script>
+</body>
+</html>
+
