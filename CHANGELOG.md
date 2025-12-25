@@ -1,5 +1,30 @@
 # 변경 사항 (Changelog)
 
+## v2.2.7 - 2025-12-25
+
+### 🐛 핵심 버그 수정 (동영상-이미지 겹침 완전 해결)
+
+#### 문제 정확한 진단
+- **디버깅 로그 확인 결과**: 
+  - 5월(index 4): 동영상 `left-center` + 이미지 `top-left`
+  - 둘 다 **좌측**에 배치되어 겹침 ❌
+
+#### 근본적 해결책
+- **동영상 위치별 이미지 반대편 배치**:
+  - 동영상 `left-center` → 이미지는 `right` 계열만 (top-right, bottom-right)
+  - 동영상 `right-center` → 이미지는 `left` 계열만 (top-left, bottom-left)
+  - 동영상 `top-center` → 이미지는 `bottom` 계열만 (bottom-left, bottom-right)
+  - 동영상 `bottom-center` → 이미지는 `top` 계열만 (top-left, top-right)
+
+#### 실제 배치 (5월 예시)
+- **Before**: 동영상(left-center) + 이미지(top-left) → 좌측 겹침 ❌
+- **After**: 동영상(left-center) + 이미지(top-right) → 좌우 분리 ✅
+
+### 📦 파일 변경
+- `app.js`: getMediaPosition() 함수 완전 재작성 (반대편 배치 로직)
+
+---
+
 ## v2.2.6 - 2025-12-25
 
 ### 🔧 레이아웃 및 z-index 조정

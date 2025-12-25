@@ -199,9 +199,10 @@ function createSlide(data, index) {
     
     // 동영상 HTML 생성
     let videoHTML = '';
+    const hasVideo = !!data.video;
     if (data.video) {
         videoHTML = `
-            <div class="slide-media slide-video" data-position="${getMediaPosition(index, 0, 'video')}">
+            <div class="slide-media slide-video" data-position="${getMediaPosition(index, 0, 'video', false)}">
                 <video autoplay loop muted playsinline>
                     <source src="${data.video}" type="video/mp4">
                 </video>
@@ -213,7 +214,7 @@ function createSlide(data, index) {
     let imagesHTML = '';
     if (data.images && data.images.length > 0) {
         imagesHTML = data.images.map((imageUrl, imgIndex) => `
-            <div class="slide-media slide-image" data-position="${getMediaPosition(index, imgIndex, 'image')}">
+            <div class="slide-media slide-image" data-position="${getMediaPosition(index, imgIndex, 'image', hasVideo)}">
                 <img src="${imageUrl}" alt="${data.title} - 이미지 ${imgIndex + 1}" loading="lazy">
             </div>
         `).join('');
@@ -236,27 +237,50 @@ function createSlide(data, index) {
 }
 
 // ==================== 미디어 위치 계산 (슬라이드마다 다르게) ====================
-function getMediaPosition(slideIndex, mediaIndex, type) {
+function getMediaPosition(slideIndex, mediaIndex, type, hasVideo) {
     // 동영상과 이미지를 완전 분리하여 겹침 방지
     
     if (type === 'video') {
-        // 동영상 전용 위치 (중앙 계열 4개)
-        const videoPositions = [
-            'left-center', 'right-center', 'top-center', 'bottom-center'
-        ];
-        const positionIndex = (slideIndex + mediaIndex) % videoPositions.length;
+        // 동영상 위치 (좌우 교대로)
+        const videoPositions = ['left-center', 'right-center', 'top-center', 'bottom-center'];
+        const positionIndex = slideIndex % videoPositions.length;
         const position = videoPositions[positionIndex];
-        console.log(`🎬 동영상 위치 [${slideIndex}월, index:${mediaIndex}] → ${position}`);
+        console.log(`🎬 동영상 위치 [${slideIndex}월(index:${slideIndex})] → ${position}`);
         return position;
     } else {
-        // 이미지 전용 위치 (코너 계열 4개)
-        const imagePositions = [
-            'top-left', 'top-right', 'bottom-left', 'bottom-right'
-        ];
-        const positionIndex = (slideIndex * 2 + mediaIndex) % imagePositions.length;
-        const position = imagePositions[positionIndex];
-        console.log(`📸 이미지 위치 [${slideIndex}월, index:${mediaIndex}] → ${position}`);
-        return position;
+        // 이미지 위치 (동영상 반대편에 배치)
+        
+        // 동영상이 있는지 확인하고 반대편 위치 선택
+        if (hasVideo) {
+            const videoPos = slideIndex % 4;
+            
+            // 동영상이 left-center(0) → 이미지는 right 계열
+            // 동영상이 right-center(1) → 이미지는 left 계열
+            // 동영상이 top-center(2) → 이미지는 bottom 계열
+            // 동영상이 bottom-center(3) → 이미지는 top 계열
+            
+            let imagePositions;
+            if (videoPos === 0) { // left-center
+                imagePositions = ['top-right', 'bottom-right'];
+            } else if (videoPos === 1) { // right-center
+                imagePositions = ['top-left', 'bottom-left'];
+            } else if (videoPos === 2) { // top-center
+                imagePositions = ['bottom-left', 'bottom-right'];
+            } else { // bottom-center
+                imagePositions = ['top-left', 'top-right'];
+            }
+            
+            const position = imagePositions[mediaIndex % imagePositions.length];
+            console.log(`📸 이미지 위치 [${slideIndex}월, index:${mediaIndex}] → ${position} (동영상 반대편)`);
+            return position;
+        } else {
+            // 동영상 없으면 자유롭게 배치
+            const imagePositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+            const positionIndex = (slideIndex * 2 + mediaIndex) % imagePositions.length;
+            const position = imagePositions[positionIndex];
+            console.log(`📸 이미지 위치 [${slideIndex}월, index:${mediaIndex}] → ${position}`);
+            return position;
+        }
     }
 }
 
