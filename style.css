@@ -156,11 +156,12 @@ body {
 }
 
 .intro-description {
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
     margin-bottom: 2.5rem;
     color: white;
     opacity: 1;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-weight: 500;
 }
 
 .start-button {
@@ -170,7 +171,7 @@ body {
     border: none;
     border-radius: 50px;
     /* 밝은 시안색으로 배경과 강한 대비 */
-    background: #00d9ff;
+    background: #ffffff;
     color: #003d52;
     cursor: pointer;
     display: inline-flex;
