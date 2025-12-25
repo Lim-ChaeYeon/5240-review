@@ -199,7 +199,6 @@ function createSlide(data, index) {
     
     // 동영상 HTML 생성
     let videoHTML = '';
-    const hasVideo = data.video ? 1 : 0; // 동영상 유무 체크
     if (data.video) {
         videoHTML = `
             <div class="slide-media slide-video" data-position="${getMediaPosition(index, 0, 'video')}">
@@ -210,11 +209,11 @@ function createSlide(data, index) {
         `;
     }
     
-    // 이미지 HTML 생성 (동영상이 있으면 인덱스를 1부터 시작하여 겹침 방지)
+    // 이미지 HTML 생성
     let imagesHTML = '';
     if (data.images && data.images.length > 0) {
         imagesHTML = data.images.map((imageUrl, imgIndex) => `
-            <div class="slide-media slide-image" data-position="${getMediaPosition(index, imgIndex + hasVideo, 'image')}">
+            <div class="slide-media slide-image" data-position="${getMediaPosition(index, imgIndex, 'image')}">
                 <img src="${imageUrl}" alt="${data.title} - 이미지 ${imgIndex + 1}" loading="lazy">
             </div>
         `).join('');
@@ -238,15 +237,23 @@ function createSlide(data, index) {
 
 // ==================== 미디어 위치 계산 (슬라이드마다 다르게) ====================
 function getMediaPosition(slideIndex, mediaIndex, type) {
-    // 슬라이드와 미디어 인덱스를 기반으로 다양한 위치 반환
-    const positions = [
-        'top-left', 'top-right', 'bottom-left', 'bottom-right',
-        'left-center', 'right-center', 'top-center', 'bottom-center'
-    ];
+    // 동영상과 이미지를 완전 분리하여 겹침 방지
     
-    // 슬라이드마다 다른 위치 패턴
-    const positionIndex = (slideIndex * 3 + mediaIndex) % positions.length;
-    return positions[positionIndex];
+    if (type === 'video') {
+        // 동영상 전용 위치 (중앙 계열 4개)
+        const videoPositions = [
+            'left-center', 'right-center', 'top-center', 'bottom-center'
+        ];
+        const positionIndex = (slideIndex + mediaIndex) % videoPositions.length;
+        return videoPositions[positionIndex];
+    } else {
+        // 이미지 전용 위치 (코너 계열 4개)
+        const imagePositions = [
+            'top-left', 'top-right', 'bottom-left', 'bottom-right'
+        ];
+        const positionIndex = (slideIndex * 2 + mediaIndex) % imagePositions.length;
+        return imagePositions[positionIndex];
+    }
 }
 
 // ==================== 숫자 추출 (카운트업용) ====================
