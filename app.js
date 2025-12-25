@@ -1,6 +1,7 @@
 // ==================== 전역 변수 ====================
 let swiper = null;
 let currentSlideIndex = 0;
+let clickListenerAdded = false;
 
 // ==================== 초기화 ====================
 document.addEventListener('DOMContentLoaded', function() {
@@ -286,15 +287,23 @@ function startReview() {
         
         // Swiper 업데이트
         if (swiper) {
+            swiper.slideTo(0, 0);  // 첫 슬라이드로 확실히 이동
             swiper.update();
             updateProgressBar(0);
+            updateSlideCounter(0);
             animateStats(0);
+        }
+        
+        // 기존 떠다니는 아이콘 제거 (중복 방지)
+        const floatingContainer = document.getElementById('floatingContainer');
+        if (floatingContainer) {
+            floatingContainer.innerHTML = '';
         }
         
         // 떠다니는 아이콘 생성
         createFloatingIcons();
         
-        // 클릭 이벤트 리스너 등록
+        // 클릭 이벤트 리스너 등록 (중복 방지는 이미 처리됨)
         enableClickToNext();
     }, 500);
 }
@@ -395,6 +404,9 @@ function showEndingScreen() {
 function restartReview() {
     const endingScreen = document.getElementById('endingScreen');
     const introScreen = document.getElementById('introScreen');
+    const mainSwiper = document.getElementById('mainSwiper');
+    const slideCounter = document.getElementById('slideCounter');
+    const finishHint = document.getElementById('finishHint');
     
     // 엔딩 화면 숨기기
     if (endingScreen) {
@@ -404,18 +416,37 @@ function restartReview() {
         }, 500);
     }
     
+    // 메인 스와이퍼 숨기기
+    if (mainSwiper) {
+        mainSwiper.style.display = 'none';
+    }
+    
+    // 슬라이드 카운터 숨기기
+    if (slideCounter) {
+        slideCounter.style.display = 'none';
+    }
+    
+    // 완료 힌트 숨기기
+    if (finishHint) {
+        finishHint.classList.remove('visible');
+    }
+    
     // 인트로 화면 다시 표시
     if (introScreen) {
         introScreen.classList.remove('hidden');
     }
     
-    // Swiper 첫 슬라이드로
+    // Swiper 완전 리셋
     if (swiper) {
         swiper.slideTo(0, 0);
+        swiper.update();
     }
     
     // 진행률 바 리셋
     updateProgressBar(0);
+    
+    // 슬라이드 카운터 리셋
+    updateSlideCounter(0);
 }
 
 // ==================== 공유하기 ====================
@@ -515,6 +546,9 @@ window.addEventListener('resize', function() {
 
 // ==================== 화면 클릭으로 다음 슬라이드 ====================
 function enableClickToNext() {
+    // 이미 리스너가 추가되었으면 스킵 (중복 방지)
+    if (clickListenerAdded) return;
+    
     const swiperContainer = document.querySelector('.swiper-container');
     
     if (swiperContainer) {
@@ -539,6 +573,8 @@ function enableClickToNext() {
                 }
             }
         });
+        
+        clickListenerAdded = true;
     }
 }
 
