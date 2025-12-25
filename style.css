@@ -235,26 +235,28 @@ body {
     position: absolute;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    /* 우하향 방향 얕은 그림자 */
+    box-shadow: 12px 12px 35px rgba(0, 0, 0, 0.3);
     z-index: 2;
-    border: 4px solid rgba(255, 255, 255, 0.2);
+    /* border 제거 - 깔끔한 디자인 */
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .slide-media:hover {
     transform: scale(1.05) !important;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    /* 호버 시 우하향 그림자 더 진하게 */
+    box-shadow: 18px 18px 50px rgba(0, 0, 0, 0.45);
 }
 
 .slide-image {
-    width: 280px;
-    height: 200px;
+    width: 560px;
+    height: 400px;
 }
 
 .slide-video {
-    width: 350px;
-    height: 250px;
+    width: 700px;
+    height: 500px;
 }
 
 .slide-media img,
@@ -679,13 +681,13 @@ body {
     
     /* 모바일에서 슬라이드 미디어 크기 조정 */
     .slide-image {
-        width: 150px;
-        height: 120px;
+        width: 240px;
+        height: 180px;
     }
     
     .slide-video {
-        width: 200px;
-        height: 150px;
+        width: 300px;
+        height: 220px;
     }
     
     /* 모바일에서는 미디어를 작게 */
@@ -709,15 +711,15 @@ body {
 }
 
 @media (max-width: 480px) {
-    /* 초소형 화면에서는 더 작게 */
+    /* 초소형 화면에서는 적절한 크기로 */
     .slide-image {
-        width: 100px;
-        height: 80px;
+        width: 180px;
+        height: 140px;
     }
     
     .slide-video {
-        width: 150px;
-        height: 100px;
+        width: 240px;
+        height: 180px;
     }
 }
 
