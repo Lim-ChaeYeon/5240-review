@@ -211,19 +211,19 @@ const teamYearData = [
 // ==================== 설정 옵션 ====================
 const config = {
     // 회사/팀 이름
-    teamName: '우리 팀',
+    teamName: '오이사공5240',
     
     // 연도
     year: '2025',
     
     // 인트로 메시지
-    introTitle: '우리 ㅇㅇㅇㅇ 팀',
-    introSubtitle: '2025년 ㅇㅇㅇㅇㅇㅇ 결산',
-    introDescription: '함께 만들어낸 한 해의 성과를 돌아봅니다',
+    introTitle: '오이사공5240',
+    introSubtitle: '한해 동안 나아간 성과',
+    introDescription: '고객과 함께 이루었습니다.',
     
     // 엔딩 메시지
-    endingTitle: '2025년, 함께여서 특별했습니다',
-    endingDescription: '2026년에도 계속해서 성장하며 나아가겠습니다',
+    endingTitle: '2025년, 함께 해주신 것에 대해 고마운 마음을 전합니다.',
+    endingDescription: '2026년에도 스마트한 인사관리가 될 수 있도록 나아가겠습니다',
     
     // 자동 재생 (밀리초, null이면 자동재생 안함)
     autoplayDelay: null, // 예: 5000 = 5초마다 자동으로 넘어감
