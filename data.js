@@ -3,11 +3,11 @@
 
 const teamYearData = [
     {
-        month: '1월',
+        month: '하나',
         title: '새로운 시작',
-        description: '새로운 팀원 5명이 합류하여 팀을 강화했습니다',
-        stat: '5명',
-        icon: '👥',
+        description: '스마트한 HR시스템이 지원합니다.',
+        stat: '스마트인사관리',
+        icon: '🖥️',
         // 이미지 URL (선택사항 - 없으면 아이콘만 표시)
         images: [
             'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop',
@@ -16,9 +16,9 @@ const teamYearData = [
         // 동영상 URL (선택사항)
         video: null,
         features: [
-            { title: '신규 입사', content: '열정 넘치는 5명의 팀원' },
-            { title: '팀 빌딩', content: '워크숍을 통한 팀워크 강화' },
-            { title: '목표 설정', content: '2025년 핵심 목표 수립' }
+            { title: 'UIUX 대폭개선', content: 'PC와 모바일 UIUX 개선' },
+            { title: '총무업무 확대', content: '총무업무도 스마트하게' },
+            { title: '안정성확보', content: '시스템튜닝과 APM가동' }
         ]
     },
     {
