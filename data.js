@@ -111,7 +111,7 @@ const teamYearData = [
     },
     {
         month: '2025 7️⃣',
-        title: '그리고 빠뜨리면 서운할 것',
+        title: '앗! 빠뜨리면 서운할 것',
         description: '총무관리 메뉴와 시스템안정성',
         stat: 'v2.0',
         icon: '🎉',
@@ -127,41 +127,41 @@ const teamYearData = [
         ]
     },
     {
-        month: '8월',
-        title: '사회 공헌',
-        description: '지역 사회를 위한 다양한 봉사활동을 진행했습니다',
-        stat: '100시간',
-        icon: '❤️',
+        month: '2026년 하나',
+        title: 'AI로 HR을 스마트하게',
+        description: '우리회사에 정확히 적용되는 AI 활용',
+        stat: '700일 준비',
+        icon: '🤖',
         images: [
             'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&h=600&fit=crop'
         ],
         video: null,
         features: [
-            { title: '봉사 활동', content: '전 직원 100시간 봉사 참여' },
-            { title: '장학금', content: '50명의 학생에게 지원' },
-            { title: '환경 보호', content: '1만 그루 나무 심기 캠페인' }
+            { title: 'AI HR챗봇', content: '우리 회사의 인사제도를 묻고 바로 대답듣기' },
+            { title: 'AI 인사분석', content: '인사팀과 경영층에 HR인사이트 제공' },
+            { title: 'AI 환경설정', content: '복잡한 HR시스템 설정 지원' }
         ]
     },
     {
-        month: '9월',
-        title: '기술 혁신',
-        description: 'AI 기술을 도입하여 생산성을 크게 향상시켰습니다',
+        month: '2026년 둘',
+        title: '고객지원 강화',
+        description: '고객지원 프로세스와 품질을 올리겠습니다',
         stat: '+150%',
-        icon: '🤖',
+        icon: '❤️',
         images: [
             'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop'
         ],
         video: null,
         features: [
-            { title: '자동화', content: '반복 업무 80% 자동화' },
-            { title: 'AI 도입', content: '고객 서비스 AI 챗봇 구축' },
-            { title: '생산성', content: '업무 효율 150% 향상' }
+            { title: '고객지원', content: '문의-답변프로세스 활성화와 빠른 처리' },
+            { title: '5240가이드홈', content: '매뉴얼과 HR업무 지원까지' },
+            { title: '각종 자료', content: 'HR업무 이해를 돕는 컨텐츠 제공공' }
         ]
     },
     {
-        month: '10월',
-        title: '수상 & 인증',
-        description: '업계에서 우수성을 인정받아 다수의 상을 수상했습니다',
+        month: '2026년 셋',
+        title: '대한민국 넘버원 HR시스템',
+        description: '계속되는 UIUX개선과 메뉴/기능추가.',
         stat: '7개',
         icon: '🏆',
         images: [
@@ -169,9 +169,9 @@ const teamYearData = [
         ],
         video: null,
         features: [
-            { title: '혁신상', content: '국가 혁신대상 수상' },
-            { title: '품질 인증', content: 'ISO 9001 인증 획득' },
-            { title: '일하기 좋은 회사', content: '대한민국 Top 10 선정' }
+            { title: 'UIUX개선 ', content: '모바일 푸시알림, ToDo, 게시물팝업, 그리고 최신화' },
+            { title: '메뉴와 기능', content: 'PC에서 사용자 경험 개선' },
+            { title: '보안과 안정성', content: '시스템업그레이드(1월에 저작권등록)와 국제보안인증 획득' }
         ]
     },
     {
