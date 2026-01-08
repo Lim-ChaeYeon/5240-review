@@ -211,7 +211,7 @@ const teamYearData = [
 // ==================== 설정 옵션 ====================
 const config = {
     // 회사/팀 이름
-    teamName: '우리 팀',
+    teamName: '우리ㅇㅇㅇㅇㅇㅇ 팀',
     
     // 연도
     year: '2025',
