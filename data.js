@@ -211,13 +211,13 @@ const teamYearData = [
 // ==================== 설정 옵션 ====================
 const config = {
     // 회사/팀 이름
-    teamName: '우리ㅇㅇㅇㅇㅇㅇ 팀',
+    teamName: '우리 팀',
     
     // 연도
     year: '2025',
     
     // 인트로 메시지
-    introTitle: '우리 팀',
+    introTitle: '우리 ㅇㅇㅇㅇ 팀',
     introSubtitle: '2025년 결산',
     introDescription: '함께 만들어낸 한 해의 성과를 돌아봅니다',
     
